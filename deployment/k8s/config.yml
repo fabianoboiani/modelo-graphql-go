@@ -1,0 +1,36 @@
+apiVersion: v1
+data:
+  LDAP_USER: xyz
+  LDAP_PASSWORD: xyz
+  application.yml: |
+    kafka:
+      consumer:
+        servers: "localhost:9092"
+        group: "purchase-request"
+        offset: earliest
+        topics:
+          receive-po: "purchase.cmd.return.0"
+    email:
+      from: "carlos.manoel@gmail.com"
+      subject: "Notificação Pedido Compra"
+      smtp:
+        host: "smtp.gmail.com"
+        port: 587
+        auth:
+          user: "carlos.manoel@gmail.com"
+          password: "edsjigyexwogihdk"
+    ldap:
+       address: "ldap://localhost:1389"
+       username: "cn=admin,dc=example,dc=org"
+       password: "admin"
+       baseDN: "ou=users,dc=example,dc=org"
+       filters:
+          byUsername: "(&(objectClass=organizationalPerson)(cn=%s))"
+kind: ConfigMap
+metadata:
+  labels:
+    app: datalab-notification-v1
+    app.kubernetes.io/part-of: datalab-notification
+  name: datalab-notification-config
+
+

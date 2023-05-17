@@ -1,0 +1,26 @@
+
+type Book {
+  id: ID!
+  title: String!
+  category: Int!
+  author: Author!
+}
+
+type Author {
+  name: String!
+}
+
+input NewBook {
+  title: String!
+  author: String!
+  category: Int!
+}
+
+type BookMutationResponse implements MutationResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+  book: Book
+}
+
+

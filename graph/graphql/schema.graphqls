@@ -1,0 +1,18 @@
+
+type Query {
+  books: [Book!]!
+  status: Health!
+  getBookById(id: ID!): BookMutationResponse!
+}
+
+type Mutation {
+  createBook(input: NewBook!): BookMutationResponse!
+  updateBook(id: ID!, input: NewBook!): BookMutationResponse!
+  deleteBook(id: ID!): BookMutationResponse!
+}
+
+interface MutationResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+}
